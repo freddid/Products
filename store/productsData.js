@@ -38,6 +38,9 @@ export const mutations = {
    removeProduct(state, idProd) {
       state.products = state.products.filter(el => el.id != idProd)
    },
+   getProduct(state) {
+      if (localStorage.getItem('products')) state.products = JSON.parse(localStorage.getItem('products'));
+   },
    sortProdutcts(state, sort) {
       state.sortCondition = sort;
       let fanSort;

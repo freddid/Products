@@ -39,7 +39,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .product__card {
   position: relative;
   width: 332px;
@@ -50,6 +50,7 @@ export default {
   box-shadow: 0px 20px 30px rgb(0 0 0 / 4%), 0px 6px 10px rgb(0 0 0 / 2%);
   margin-left: 16px;
   border-radius: 4px;
+  transition: all 0.3s;
 }
 .product__card__contant {
   padding: 16px;
@@ -94,5 +95,11 @@ export default {
 }
 .product__card:hover .product__card__basket {
   display: flex;
+}
+.product__card:hover {
+  box-shadow: 0px 0px 20px 6px rgb(0 0 0 / 17%);
+}
+.product__card__basket:hover {
+  background: #ff5151;
 }
 </style>

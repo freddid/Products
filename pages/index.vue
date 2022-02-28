@@ -12,14 +12,22 @@
 <script>
 
 export default {
+  mounted () {
+    this.$store.commit('productsData/getProduct')
+  },
+  created () {
+    this.$store.subscribe((mutation, state) => {
+      localStorage.setItem('products', JSON.stringify(state.productsData.products))
+    })
+  }
 }
 </script>
 
 <style scoped>
-#app{
+#app {
+  padding: 32px;
   display: flex;
 }
-
 #app .sidebar {
   min-width: 332px;
   max-width: 30%;

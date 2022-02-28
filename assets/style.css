@@ -4,10 +4,9 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   background-color: #e5e5e5;
-  ;
   font-family: 'Source Sans Pro', sans-serif;
   font-style: normal;
-  padding: 32px;
+  padding: 0;
 }
 
 body,

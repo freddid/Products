@@ -34,7 +34,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .products__header {
   display: flex;
   justify-content: flex-end;
@@ -44,6 +44,6 @@ export default {
   display: flex;
   grid-template-columns: auto;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-around;  
 }
 </style>

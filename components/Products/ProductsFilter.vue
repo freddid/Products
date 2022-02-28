@@ -39,7 +39,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .product__filter {
   font-size: 12px;
   color: #3f3f3f;
