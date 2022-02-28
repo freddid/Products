@@ -1,0 +1,36 @@
+body {
+  min-height: calc(100vh - 64px);
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background-color: #e5e5e5;
+  ;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: normal;
+  padding: 32px;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  outline: none;
+  border: none;
+}
