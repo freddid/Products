@@ -6,7 +6,7 @@
     <div class="product__card__contant">
       <div class="product__card__title">{{ title }}</div>
       <div class="product__card__txt">{{ txt }}</div>
-      <div class="product__card__price">{{ price }}</div>
+      <div class="product__card__price">{{ divisionOfСhills }}</div>
     </div>
     <div @click="$emit('removeProduct', id)" class="product__card__basket">
       <img src="@/assets/img/basket-icon.svg" alt="" />
@@ -35,6 +35,11 @@ export default {
     id: {
       type: Number,
       default: null
+    }
+  },
+  computed: {
+    divisionOfСhills () {
+      return this.price.toLocaleString()
     }
   }
 }
@@ -101,5 +106,11 @@ export default {
 }
 .product__card__basket:hover {
   background: #ff5151;
+}
+
+@media (max-width: 480px) {
+  .product__card{
+    margin-left: 0;
+  }
 }
 </style>

@@ -32,11 +32,12 @@ export const state = () => ({
 
 export const mutations = {
    addProduct(state, objProd) {
-      console.log(objProd)
       state.products.push(objProd)
+      alert('Товар успешно добавлен')
    },
    removeProduct(state, idProd) {
       state.products = state.products.filter(el => el.id != idProd)
+      alert('Товар успешно удален')
    },
    getProduct(state) {
       if (localStorage.getItem('products')) state.products = JSON.parse(localStorage.getItem('products'));
@@ -58,10 +59,7 @@ export const mutations = {
 }
 
 export const getters = {
-   products(state) {
-      return state.products
-   },
-   sortCondition(state) {
-      return state.sortCondition
-   }
+   products: state => state.products,
+
+   sortCondition: state => state.sortCondition
 }

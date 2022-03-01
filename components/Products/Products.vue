@@ -44,6 +44,13 @@ export default {
   display: flex;
   grid-template-columns: auto;
   flex-wrap: wrap;
-  justify-content: space-around;  
+  justify-content: space-around;
+}
+
+@media (max-width: 720px) {
+  .products__header {
+    justify-content: center;
+    margin: 16px 0;
+  }
 }
 </style>

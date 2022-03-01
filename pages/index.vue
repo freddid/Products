@@ -10,14 +10,16 @@
 </template>
 
 <script>
-
 export default {
   mounted () {
     this.$store.commit('productsData/getProduct')
   },
   created () {
     this.$store.subscribe((mutation, state) => {
-      localStorage.setItem('products', JSON.stringify(state.productsData.products))
+      localStorage.setItem(
+        'products',
+        JSON.stringify(state.productsData.products)
+      )
     })
   }
 }
@@ -30,9 +32,25 @@ export default {
 }
 #app .sidebar {
   min-width: 332px;
-  max-width: 30%;
 }
 #app .content {
   width: 100%;
+}
+
+@media (max-width: 720px) {
+  #app {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  #app {
+    padding: 15px;
+  }
+  #app .sidebar {
+    min-width: unset;
+    width: 100%;
+  }
 }
 </style>
