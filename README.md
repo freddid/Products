@@ -1,4 +1,4 @@
-# task-hh-list
+# products-list
 
 ## Build Setup
 
