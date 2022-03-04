@@ -3,37 +3,20 @@
     <h1 class="add-product__title">Добавление товара</h1>
     <form class="add-product__form" action="#" @submit.prevent="validForm">
       <AddProductInput
-        :val.sync="name"
-        label="Наименование товара"
-        placeholder="Введите наименование товара"
-        :error="error.name"
+        v-for="input in inputObj"
+        :key="input.label"
+        :val.sync="input.val"
+        :label="input.label"
+        :type="input.type"
+        :isTextarea="input.isTextarea"
+        :placeholder="input.placeholder"
+        :required="input.required"
+        :error="input.error"
       />
-
-      <AddProductInput
-        :val.sync="descript"
-        :isTextarea="true"
-        label="Описание товара"
-        placeholder="Введите описание товара"
-      />
-
-      <AddProductInput
-        :val.sync="urlImg"
-        label="Ссылка на изображение товара"
-        placeholder="Введите ссылку"
-        :error="error.urlImg"
-      />
-
-      <AddProductInput
-        :val.sync="price"
-        label="Цена товара"
-        type="number"
-        placeholder="Введите цену"
-        :error="error.price"
-      />
-
       <button :class="{ disabled: emptiVal }" class="add-product__submit">
         Добавить товар
       </button>
+      <div v-if="success" class="success">Товар успешно добавлен</div>
     </form>
   </div>
 </template>
@@ -43,15 +26,43 @@ import { mapGetters, mapMutations } from 'vuex'
 export default {
   data () {
     return {
-      name: '',
-      descript: '',
-      urlImg: '',
-      price: '',
-      error: {
-        name: false,
-        urlImg: false,
-        price: false
-      }
+      inputObj: [
+        {
+          val: '',
+          name: 'name',
+          label: 'Наименование товара',
+          placeholder: 'Введите наименование товара',
+          error: false,
+          required: true
+        },
+        {
+          val: '',
+          name: 'descript',
+          isTextarea: true,
+          label: 'Описание товара',
+          placeholder: 'Введите описание товара',
+          required: false,
+          error: false
+        },
+        {
+          val: '',
+          name: 'urlImg',
+          label: 'Ссылка на изображение товара',
+          placeholder: 'Введите ссылку',
+          error: false,
+          required: true
+        },
+        {
+          val: '',
+          name: 'price',
+          label: 'Цена товара',
+          placeholder: 'Введите цену',
+          type: 'number',
+          error: false,
+          required: true
+        }
+      ],
+      success: false
     }
   },
   components: {
@@ -59,32 +70,28 @@ export default {
   },
   methods: {
     validForm () {
-      this.error.name = !this.name.length
-      this.error.urlImg = !this.urlImg.length
-      this.error.price = !this.price.length
+      this.inputObj.forEach(el => (el.error = !el.val.length))
 
       if (!this.emptiVal) {
         this.addProduct({
-          id: Math.random(),
-          name: this.name,
-          urlImg: this.urlImg,
-          price: +this.price,
-          descript: this.descript
+          id: Math.random() + this.inputObj[0].val,
+          name: this.inputObj[0].val,
+          descript: this.inputObj[1].val,
+          urlImg: this.inputObj[2].val,
+          price: this.inputObj[3].val
         })
-
         this.sortProdutcts(this.sortCondition)
+        this.inputObj.forEach(el => (el.val = ''))
 
-        this.name = ''
-        this.urlImg = ''
-        this.price = ''
-        this.descript = ''
+        this.success = true
+        setTimeout(() => (this.success = false), 2000)
       }
     },
     ...mapMutations('productsData', ['addProduct', 'sortProdutcts'])
   },
   computed: {
     emptiVal () {
-      return !(this.name.length && this.urlImg.length && this.price.length)
+      return this.inputObj.find(el => el.val == '' && el.required)
     },
     ...mapGetters('productsData', ['sortCondition'])
   }
@@ -122,5 +129,15 @@ export default {
   font-weight: 600;
   line-height: 15px;
   font-size: 12px;
+}
+
+.success {
+  text-align: center;
+  margin-top: 16px;
+  display: block;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #7bae73;
+  font-size: 16px;
 }
 </style>

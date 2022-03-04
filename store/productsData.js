@@ -33,11 +33,9 @@ export const state = () => ({
 export const mutations = {
    addProduct(state, objProd) {
       state.products.push(objProd)
-      alert('Товар успешно добавлен')
    },
    removeProduct(state, idProd) {
       state.products = state.products.filter(el => el.id != idProd)
-      alert('Товар успешно удален')
    },
    getProduct(state) {
       if (localStorage.getItem('products')) state.products = JSON.parse(localStorage.getItem('products'));
@@ -49,8 +47,8 @@ export const mutations = {
       if (sort == 'min') fanSort = (a, b) => a.price - b.price;
       if (sort == 'max') fanSort = (a, b) => b.price - a.price;
       if (sort == 'default') fanSort = (a, b) => {
-         if (a.name < b.name) return -1
-         if (a.name > b.name) return 1
+         if (a.name.toLowerCase() < b.name.toLowerCase()) return -1
+         if (a.name.toLowerCase() > b.name.toLowerCase()) return 1
          return 0
       };
 
@@ -60,6 +58,6 @@ export const mutations = {
 
 export const getters = {
    products: state => state.products,
-
+   
    sortCondition: state => state.sortCondition
 }

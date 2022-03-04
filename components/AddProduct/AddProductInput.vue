@@ -1,7 +1,7 @@
 <template>
   <div class="form-group">
     <label for="add-product__input">
-      {{ label }} <i v-if="!isTextarea"></i>
+      {{ label }} <i v-if="required"></i>
     </label>
     <input
       :class="{ error: error }"
@@ -20,7 +20,7 @@
       id="add-product__input"
       :placeholder="placeholder"
     />
-    <small class="add-product__error" v-if="error"
+    <small class="add-product__error" v-if="error && required"
       >Поле является обязательным</small
     >
   </div>
@@ -51,6 +51,10 @@ export default {
     val: {
       type: String,
       default: ''
+    },
+    required: {
+      type: Boolean,
+      default: true
     }
   },
   emits: ['update:val'],

@@ -59,6 +59,10 @@ export default {
 }
 .product__card__contant {
   padding: 16px;
+  display: flex;
+  height: calc(100% - 232px);
+  flex-direction: column;
+  justify-content: space-between;
 }
 .product__img img {
   width: 100%;
@@ -67,7 +71,7 @@ export default {
   border-top-right-radius: 4px;
 }
 .product__card__txt {
-  margin: 16px 0 32px 0;
+  margin: 16px 0;
   font-size: 16px;
   line-height: 20px;
 }
@@ -109,7 +113,7 @@ export default {
 }
 
 @media (max-width: 480px) {
-  .product__card{
+  .product__card {
     margin-left: 0;
   }
 }
